@@ -3,7 +3,7 @@ nextflow.enable.dsl=2
 // Assemble the raw reads 
 
 process assemble {
-    label 'spades'
+    label "spades"
     publishDir "${params.outdir}/${sample}", mode: "copy"
 
     input:
@@ -32,7 +32,7 @@ process assembly_stats {
 
     shell:
     '''
-    quast !{assembly} -o !{sample}_quast
+    quast !{assembly}/contigs.fasta -o !{sample}_quast
     '''
 }
 

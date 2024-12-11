@@ -1,2 +1,8 @@
 work
 .nextflow*
+*txt
+uploads
+outputs
+*__py*
+*.pyc
+.*

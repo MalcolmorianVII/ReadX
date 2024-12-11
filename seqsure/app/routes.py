@@ -1,6 +1,7 @@
 import os
 from flask import request, jsonify, current_app
 from werkzeug.utils import secure_filename
+from .pipeline_handler import run_nextflow_pipeline
 
 @current_app.route('/uploads', methods=['POST'])
 def upload_file():
@@ -15,8 +16,6 @@ def upload_file():
         file.save(upload_path)
         return jsonify({'message': 'File uploaded successfully', 'filename': filename}), 200
 
-
-from .pipeline_handler import run_nextflow_pipeline
 
 @current_app.route('/run_pipeline', methods=['POST'])
 def run_pipeline():

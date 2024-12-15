@@ -1,0 +1,265 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-4">
+        <!-- Navigation -->
+        <nav class="fixed top-0 left-0 right-0 bg-white p-2 md:p-4 shadow-md z-10 w-full">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2 md:space-x-4">
+                    <div class="text-gray-500">
+                        <i class="fas fa-th-large"></i>
+                    </div>
+                    <a href="dashboard.html" class="text-gray-500 font-semibold">Dashboard</a>
+                    <a href="data-directory.html" class="text-blue-400 flex items-center space-x-1">
+                        <i class="fas fa-folder-open"></i>
+                        <span>Data directory</span>
+                    </a>
+                    <a href="results.html" class="text-gray-400 flex items-center space-x-1">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Results</span>
+                    </a>
+                    <a href="notifications.html" class="text-gray-400 flex items-center space-x-1">
+                        <i class="fas fa-bell"></i>
+                        <span>Notifications</span>
+                    </a>
+                    <a href="settings.html" class="text-gray-400 flex items-center space-x-1">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                    <a href="profile.html" class="text-gray-400 flex items-center space-x-1">
+                        <i class="fas fa-user"></i>
+                        <span>Profile</span>
+                    </a>
+                </div>
+                <div class="flex items-center space-x-2 md:space-x-4">
+                    <div class="text-gray-400 flex items-center space-x-1">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Last 7 Days</span>
+                    </div>
+                    <div class="relative">
+                        <div class="w-8 h-8 bg-gray-300 rounded-full"></div>
+                        <span class="absolute top-0 right-0 block h-2 w-2 bg-green-500 rounded-full ring-2 ring-white"></span>
+                    </div>
+                    <span class="text-gray-400">Xteska</span>
+                </div>
+            </div>
+        </nav>
+        <!-- Welcome Section -->
+        <div class="mt-20">
+            <h1 class="text-2xl font-bold">Dashboard</h1>
+            <p class="text-gray-500">Hi {{user_name}}, Welcome Back!</p>
+        </div>
+        <!-- Cards Section -->
+        <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="bg-gray-800 rounded-lg h-32 flex items-center justify-center relative">
+                <img src="https://placehold.co/300x200" alt="Decorative background image" class="absolute inset-0 w-full h-full object-cover opacity-20 rounded-lg"/>
+            </div>
+            <div class="bg-green-500 rounded-lg h-32 flex items-center justify-center relative">
+                <img src="https://placehold.co/300x200" alt="Decorative background image" class="absolute inset-0 w-full h-full object-cover opacity-20 rounded-lg"/>
+            </div>
+            <div class="bg-orange-500 rounded-lg h-32 flex items-center justify-center relative">
+                <img src="https://placehold.co/300x200" alt="Decorative background image" class="absolute inset-0 w-full h-full object-cover opacity-20 rounded-lg"/>
+            </div>
+        </div>
+        <!-- Recent Analysis Section -->
+
+    <!-- Data Directory Page -->
+   <!-- Data Directory Page -->
+<div class="mt-6 bg-white p-4 rounded-lg shadow-md">
+  <div id="file-list">
+    <h2 class="text-lg font-bold mb-4">
+      All files / New Project
+    </h2>
+    <table class="w-full text-left">
+      <thead>
+        <tr class="text-sm text-gray-600">
+          <th class="py-2">
+            Name
+          </th>
+          <th class="py-2">
+            Type
+          </th>
+          <th class="py-2">
+            Shared
+          </th>
+          <th class="py-2">
+            Date of change
+          </th>
+        </tr>
+      </thead>
+      <tbody class="text-sm text-gray-700">
+        <tr class="border-t border-gray-200">
+          <td class="py-2 flex items-center">
+            <input class="mr-2" type="checkbox"/>
+            <i class="fas fa-folder text-yellow-500 mr-2">
+            </i>
+            <span class="folder-name">Worksheets</span>
+            <button class="folder-toggle ml-2">
+              <i class="fas fa-caret-down"></i>
+            </button>
+          </td>
+          <td class="py-2">
+            Folder
+          </td>
+          <td class="py-2">
+            Just you
+          </td>
+          <td class="py-2 flex items-center">
+            <button class="px-2 py-1 bg-gray-200 rounded">
+              Copy link
+            </button>
+            <i class="fas fa-ellipsis-h ml-2">
+            </i>
+          </td>
+        </tr>
+        <tr class="folder-content hidden">
+          <td colspan="4">
+            <div class="p-4">
+              <h3 class="text-lg font-bold mb-2">Upload file to Worksheets</h3>
+              <input type="file" id="worksheet-file" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" />
+              <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="uploadFile('Worksheets')">Upload</button>
+            </div>
+          </td>
+        </tr>
+        <tr class="border-t border-gray-200">
+          <td class="py-2 flex items-center">
+            <input class="mr-2" type="checkbox"/>
+            <i class="fas fa-file-archive text-red-500 mr-2">
+            </i>
+            Lake Stone Art.gz
+          </td>
+          <td class="py-2">
+            Document
+          </td>
+          <td class="py-2 flex items-center">
+            <i class="fas fa-user-friends mr-1">
+            </i>
+            15 people
+          </td>
+          <td class="py-2">
+            31/10/2018 22:19
+          </td>
+        </tr>
+        <tr class="border-t border-gray-200">
+          <td class="py-2 flex items-center">
+            <input class="mr-2" type="checkbox"/>
+            <i class="fas fa-link text-blue-500 mr-2">
+            </i>
+            Dribbble.fastq
+          </td>
+          <td class="py-2">
+            Link
+          </td>
+          <td class="py-2">
+            Just you
+          </td>
+          <td class="py-2">
+            31/10/2018 22:19
+          </td>
+        </tr>
+        <tr class="border-t border-gray-200">
+          <td class="py-2 flex items-center">
+            <input class="mr-2" type="checkbox"/>
+            <i class="fas fa-file-alt text-green-500 mr-2">
+            </i>
+            Contacts.gz
+          </td>
+          <td class="py-2">
+            Document
+          </td>
+          <td class="py-2 flex items-center">
+            <i class="fas fa-user-friends mr-1">
+            </i>
+            4 people
+          </td>
+          <td class="py-2">
+            31/10/2018 22:19
+          </td>
+        </tr>
+        <tr class="border-t border-gray-200">
+          <td class="py-2 flex items-center">
+            <input class="mr-2" type="checkbox"/>
+            <i class="fas fa-folder text-yellow-500 mr-2">
+            </i>
+            <span class="folder-name">Project details</span>
+            <button class="folder-toggle ml-2">
+              <i class="fas fa-caret-down"></i>
+            </button>
+          </td>
+          <td class="py-2">
+            Folder
+          </td>
+          <td class="py-2 flex items-center">
+            <i class="fas fa-user-friends mr-1">
+            </i>
+            2 people
+          </td>
+          <td class="py-2">
+            31/10/2018 22:19
+          </td>
+        </tr>
+        <tr class="folder-content hidden">
+          <td colspan="4">
+            <div class="p-4">
+              <h3 class="text-lg font-bold mb-2">Upload file to Project details</h3>
+              <input type="file" id="project-file" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" />
+              <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="uploadFile('Project details')">Upload</button>
+            </div>
+          </td>
+        </tr>
+        <tr class="border-t border-gray-200">
+          <td class="py-2 flex items-center">
+            <input class="mr-2" type="checkbox"/>
+            <i class="fas fa-file-archive text-gray-500 mr-2">
+            </i>
+            Info.fastq
+          </td>
+          <td class="py-2">
+            Archive
+          </td>
+          <td class="py-2">
+            Just you
+          </td>
+          <td class="py-2">
+            31/10/2018 22:19
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  // Function to toggle folder content
+  function toggleFolderContent(folderName) {
+    const folderContent = document.querySelector(`.folder-content[folder-name="${folderName}"]`);
+    folderContent.classList.toggle('hidden');
+  }
+
+  // Function to upload file
+  function uploadFile(folderName) {
+    const fileInput = document.querySelector(`#file-input-${folderName}`);
+    const file = fileInput.files[0];
+    // Upload file logic here
+    console.log(`Uploading file to ${folderName}`);
+  }
+
+  // Add event listeners to folder toggle buttons
+  const folderToggleButtons = document.querySelectorAll('.folder-toggle');
+  folderToggleButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const folderName = button.parentNode.querySelector('.folder-name').textContent;
+      toggleFolderContent(folderName);
+    });
+  });
+</script>
+
+</div>
+</body>
+</html>

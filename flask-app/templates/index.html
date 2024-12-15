@@ -1,0 +1,105 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-4">
+        <!-- Navigation -->
+        <nav class="flex items-center justify-between bg-white p-4 rounded-lg shadow-md">
+            <div class="flex items-center space-x-4">
+                <div class="text-blue-500">
+                    <i class="fas fa-th-large"></i>
+                </div>
+                <a href="#" class="text-blue-500 font-semibold">Dashboard</a>
+                <a href="#" class="text-gray-400 flex items-center space-x-1">
+                    <i class="fas fa-folder-open"></i>
+                    <span>Data directory</span>
+                </a>
+                <a href="#" class="text-gray-400 flex items-center space-x-1">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Results</span>
+                </a>
+                <a href="#" class="text-gray-400 flex items-center space-x-1">
+                    <i class="fas fa-bell"></i>
+                    <span>Notifications</span>
+                </a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="text-gray-400 flex items-center space-x-1">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Last 7 Days</span>
+                </div>
+                <div class="relative">
+                    <div class="w-8 h-8 bg-gray-300 rounded-full"></div>
+                    <span class="absolute top-0 right-0 block h-2 w-2 bg-green-500 rounded-full ring-2 ring-white"></span>
+                </div>
+                <span class="text-gray-400">Xtesla</span>
+            </div>
+        </nav>
+        <!-- Welcome Section -->
+        <div class="mt-6">
+            <h1 class="text-2xl font-bold">Dashboard</h1>
+            <p class="text-gray-500">Hi Belson, Welcome Back!</p>
+        </div>
+        <!-- Cards Section -->
+        <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="bg-gray-800 rounded-lg h-32 flex items-center justify-center relative">
+                <img src="https://placehold.co/300x200" alt="Decorative background image" class="absolute inset-0 w-full h-full object-cover opacity-20 rounded-lg"/>
+            </div>
+            <div class="bg-green-500 rounded-lg h-32 flex items-center justify-center relative">
+                <img src="https://placehold.co/300x200" alt="Decorative background image" class="absolute inset-0 w-full h-full object-cover opacity-20 rounded-lg"/>
+            </div>
+            <div class="bg-orange-500 rounded-lg h-32 flex items-center justify-center relative">
+                <img src="https://placehold.co/300x200" alt="Decorative background image" class="absolute inset-0 w-full h-full object-cover opacity-20 rounded-lg"/>
+            </div>
+        </div>
+        <!-- Recent Analysis Section -->
+        <div class="mt-6 bg-white p-4 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold mb-4">Recent analysis</h2>
+            <table class="w-full text-left">
+                <thead>
+                    <tr>
+                        <th class="py-2 border-b">Data Description</th>
+                        <th class="py-2 border-b">Genomic analysis stage</th>
+                        <th class="py-2 border-b">Analysis description</th>
+                        <th class="py-2 border-b">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="py-2">Sample Data 1</td>
+                        <td class="py-2">Stage 1</td>
+                        <td class="py-2">Description 1</td>
+                        <td class="py-2 flex items-center space-x-1">
+                            <i class="fas fa-check-circle text-green-500"></i>
+                            <span>Completed</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="py-2">Sample Data 2</td>
+                        <td class="py-2">Stage 2</td>
+                        <td class="py-2">Description 2</td>
+                        <td class="py-2 flex items-center space-x-1">
+                            <i class="fas fa-spinner text-yellow-500"></i>
+                            <span>In Progress</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="py-2">Sample Data 3</td>
+                        <td class="py-2">Stage 3</td>
+                        <td class="py-2">Description 3</td>
+                        <td class="py-2 flex items-center space-x-1">
+                            <i class="fas fa-hourglass-half text-red-500"></i>
+                            <span>Pending</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

@@ -5,7 +5,7 @@ This Nextflow pipeline assesses the success of sequencing runs performed by our 
 1. Ensuring sufficient quality data for downstream analysis.
 2. Verifying successful sequencing of the target organism.  
 
-The pipeline accomplishes these goals by generating mapping-based and assembly-based statistics to comprehensively evaluate sequencing performance.  
+The pipeline accomplishes these goals by generating mapping-based and assembly-based statistics to evaluate sequencing data.  
 
 ---
 

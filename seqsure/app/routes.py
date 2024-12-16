@@ -22,7 +22,7 @@ def seqsure():
 @current_app.route('/data', methods=['GET','POST'])
 def data():
     title="Data"
-    return render_template('data_directory.html',title=title)
+    return render_template('data.html',title=title)
 
 # Serve the Results page
 @current_app.route('/results', methods=['GET','POST'])

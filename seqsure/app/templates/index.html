@@ -84,7 +84,7 @@
             formData.append('file', fileInput.files[0]);
 
             try {
-                const response = await fetch('http://127.0.0.1:5000/upload', {
+                const response = await fetch('http://127.0.0.1:5000/uploads', {
                     method: 'POST',
                     body: formData,
                 });
@@ -105,7 +105,7 @@
         // Handle running the pipeline
         runPipelineButton.addEventListener('click', async () => {
             try {
-                const response = await fetch('http://127.0.0.1:5000/run-pipeline', {
+                const response = await fetch('http://127.0.0.1:5000/run_pipeline', {
                     method: 'POST',
                 });
 

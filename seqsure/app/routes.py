@@ -6,7 +6,7 @@ from .pipeline_handler import run_nextflow_pipeline
 routes = Blueprint('routes', __name__)
 
 # Serve the home page
-@current_app.route('/home', methods=['GET'])
+@current_app.route('/', methods=['GET'])
 def home():
     # Serve the index.html file
     return render_template('index.html')

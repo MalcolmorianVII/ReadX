@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seqsure - File Upload and Run Pipeline</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f7f9fc;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        input[type="file"] {
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .output {
+            margin-top: 20px;
+            padding: 10px;
+            background: #eef5ff;
+            border-left: 4px solid #007bff;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Seqsure - File Upload</h1>
+        <form id="uploadForm">
+            <label for="file">Upload File:</label>
+            <input type="file" id="file" name="file" required>
+            <button type="submit">Upload File</button>
+        </form>
+        <button id="runPipeline">Run Pipeline</button>
+        <div id="output" class="output" style="display: none;"></div>
+    </div>
+
+    <script>
+        const uploadForm = document.getElementById('uploadForm');
+        const runPipelineButton = document.getElementById('runPipeline');
+        const outputDiv = document.getElementById('output');
+
+        // Handle file upload
+        uploadForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData();
+            const fileInput = document.getElementById('file');
+
+            if (!fileInput.files[0]) {
+                alert('Please select a file!');
+                return;
+            }
+
+            formData.append('file', fileInput.files[0]);
+
+            try {
+                const response = await fetch('http://127.0.0.1:5000/uploads', {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Upload failed: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                outputDiv.style.display = 'block';
+                outputDiv.textContent = `File uploaded successfully! Path: ${data.file_path}`;
+            } catch (error) {
+                outputDiv.style.display = 'block';
+                outputDiv.textContent = `Error: ${error.message}`;
+            }
+        });
+
+        // Handle running the pipeline
+        runPipelineButton.addEventListener('click', async () => {
+            try {
+                const response = await fetch('http://127.0.0.1:5000/run_pipeline', {
+                    method: 'POST',
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Pipeline execution failed: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                outputDiv.style.display = 'block';
+                outputDiv.textContent = `Pipeline executed successfully! Result: ${data.message}`;
+            } catch (error) {
+                outputDiv.style.display = 'block';
+                outputDiv.textContent = `Error: ${error.message}`;
+            }
+        });
+    </script>
+</body>
+</html>

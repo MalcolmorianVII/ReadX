@@ -18,6 +18,18 @@ def seqsure():
     title="Run seqsure"
     return render_template('seqsure.html',title=title)
 
+# Serve the Data page
+@current_app.route('/data', methods=['GET','POST'])
+def data():
+    title="Data"
+    return render_template('data_directory.html',title=title)
+
+# Serve the Results page
+@current_app.route('/results', methods=['GET','POST'])
+def results():
+    title="Results"
+    return render_template('results.html',title=title)
+
 @current_app.route('/uploads', methods=['POST'])
 def upload_file():
     if 'file' not in request.files:

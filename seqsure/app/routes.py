@@ -9,7 +9,14 @@ routes = Blueprint('routes', __name__)
 @current_app.route('/', methods=['GET'])
 def home():
     # Serve the index.html file
-    return render_template('index.html')
+    user="Belson"
+    return render_template('index.html',user=user)
+
+# Serve the seqsure page
+@current_app.route('/seqsure', methods=['GET','POST'])
+def seqsure():
+    title="Run seqsure"
+    return render_template('seqsure.html',title=title)
 
 @current_app.route('/uploads', methods=['POST'])
 def upload_file():

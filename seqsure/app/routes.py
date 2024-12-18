@@ -30,6 +30,14 @@ def results():
     title="Results"
     return render_template('results.html',title=title)
 
+# Serve the Results page
+@current_app.route('/registration', methods=['GET','POST'])
+def register():
+    title="Register"
+    # Get user credentials i.e username & pwd & store the user in the db
+    # Give status i.e fail or success but either way redirect to login page 
+    return render_template('register.html',title=title)
+
 @current_app.route('/uploads', methods=['POST'])
 def upload_file():
     if 'file' not in request.files:

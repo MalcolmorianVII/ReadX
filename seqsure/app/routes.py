@@ -2,16 +2,34 @@ import os
 from flask import render_template,redirect,url_for,flash,request, jsonify, current_app,Blueprint, send_from_directory
 from werkzeug.utils import secure_filename
 from .pipeline_handler import run_nextflow_pipeline
+from .forms import LoginForm,RegisterForm
 
 routes = Blueprint('routes', __name__)
 
 # Serve the home page
-@current_app.route('/', methods=['GET'])
+@current_app.route('/', methods=['GET','POST'])
 def home():
     # Serve the index.html file
-    user="Belson"
-    return render_template('index.html',user=user)
+    user=None
+    form = RegisterForm()
+    if form.validate_on_submit():
+        title = form.title.data
+        email = form.email.data
+        password = form.password.data
+        title = email = password = ''
+        return redirect(url_for('home'))
+    return render_template('forms.html',form=form,user=user)
 
+# Serve the login page
+@current_app.route('/login', methods=['GET','POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        email = form.email.data
+        password = form.password.data
+        email = password = ''
+        return redirect(url_for('home'))
+    return render_template('login.html',form=form)
 # Serve the seqsure page
 @current_app.route('/seqsure', methods=['GET','POST'])
 def seqsure():

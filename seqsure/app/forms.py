@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wt_forms import StringField,SubmitField
-from wt_forms.validators import DataRequired
+from wtforms import StringField,SubmitField,BooleanField
+from wtforms.validators import DataRequired,EqualTo
 
 class LoginForm(FlaskForm):
     email = StringField('Email',validators = [DataRequired()])
@@ -10,6 +10,7 @@ class LoginForm(FlaskForm):
 class RegisterForm(FlaskForm):
     job_title = StringField('Job title',validators = [DataRequired()])
     email = StringField('Email',validators = [DataRequired()])
-    confirm_email = StringField('Confirm Email',validators = [DataRequired()])
+    confirm_email = StringField('Confirm Email',validators = [DataRequired(),EqualTo(email)])
     password = StringField('Password',validators = [DataRequired()])
+    remember_me = BooleanField('Remember Me', validators=[DataRequired()])
     submit = SubmitField('Register')

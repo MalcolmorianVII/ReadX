@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+    {% endblock %}
+</head>
+
+<body class="bg-black text-white flex items-center justify-center min-h-screen">
+    {% block body %}
+    <div class="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md">
+        <h2 class="text-2xl font-bold text-center mb-6">Login to ReadX</h2>
+        <form method="POST" class="space-y-4">
+            {% block form %}
+            {{ form.hidden_tag() }} <!-- CSRF protection -->
+
+            <!-- Job Title -->
+            <div>
+                {{ form.job_title.label(for_='jbt', class_='block text-sm font-medium text-gray-300') }}
+                {{ form.job_title(id="jbt", class="mt-1 block w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-gray-300 focus:outline-none focus:ring focus:ring-green-500") }}
+            </div>
+
+            <!-- Email -->
+            <div>
+                {{ form.email.label(for_='email', class_='block text-sm font-medium text-gray-300') }}
+                {{ form.email(id="email", class="mt-1 block w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-gray-300 focus:outline-none focus:ring focus:ring-green-500") }}
+            </div>
+
+            <!-- Confirm Email -->
+            <div>
+                {{ form.confirm_email.label(for_='confirm-email', class_='block text-sm font-medium text-gray-300') }}
+                {{ form.confirm_email(id="confirm-email", class="mt-1 block w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-gray-300 focus:outline-none focus:ring focus:ring-green-500") }}
+            </div>
+
+            <!-- Password -->
+            <div>
+                {{ form.password.label(for_='password', class_='block text-sm font-medium text-gray-300') }}
+                {{ form.password(id="password", class="mt-1 block w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-gray-300 focus:outline-none focus:ring focus:ring-green-500") }}
+            </div>
+
+            <!-- Remember Me -->
+            <div class="flex items-center">
+                {{ form.remember_me(id="remember_me", class="h-4 w-4 text-green-500 focus:ring-green-400 border-gray-600 rounded") }}
+                {{ form.remember_me.label(for_='remember_me', class_='ml-2 text-sm text-gray-300') }}
+            </div>
+
+            <!-- Submit Button -->
+            <div>
+                {{ form.submit(class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500") }}
+            </div>
+            {% endblock %}
+        </form>
+    </div>
+    {% endblock %}
+</body>
+</html>

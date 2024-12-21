@@ -1,4 +1,0 @@
-__pycache__
-app.py
-in.txt
-templates

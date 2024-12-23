@@ -10,7 +10,7 @@ class LoginForm(FlaskForm):
 class RegisterForm(FlaskForm):
     job_title = StringField('Job title',validators = [DataRequired()])
     email = StringField('Email',validators = [DataRequired()])
-    confirm_email = StringField('Confirm Email',validators = [DataRequired(),EqualTo(email)])
+    confirm_email = StringField('Confirm Email',validators = [DataRequired(),EqualTo('email', message='Emails must match')])
     password = StringField('Password',validators = [DataRequired()])
-    remember_me = BooleanField('Remember Me', validators=[DataRequired()])
+    remember_me = BooleanField('Remember Me')
     submit = SubmitField('Register')

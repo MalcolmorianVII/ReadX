@@ -9,8 +9,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <style>
         body {
-            background-color: #000;
-            color: #fff;
             font-family: Arial, sans-serif;
         }
     </style>
@@ -21,14 +19,25 @@
     {% block body %}
     <div class="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md">
         <h2 class="text-2xl font-bold text-center mb-6">Login to ReadX</h2>
+        
+        <!-- Flash Messages -->
+        {% for message, category in get_flashed_messages(with_categories=True) %}
+        <div class="p-4 mb-4 text-sm 
+            {{ 'text-green-700 bg-green-100' if category == 'success' else 'text-red-700 bg-red-100' }} 
+            rounded-lg">
+            {{ message }}
+        </div>
+        {% endfor %}
+
+        <!-- Login Form -->
         <form method="POST" class="space-y-4">
             {% block form %}
             {{ form.hidden_tag() }} <!-- CSRF protection -->
 
             <!-- Job Title -->
             <div>
-                {{ form.job_title.label(for_='jbt', class_='block text-sm font-medium text-gray-300') }}
-                {{ form.job_title(id="jbt", class="mt-1 block w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-gray-300 focus:outline-none focus:ring focus:ring-green-500") }}
+                {{ form.job_title.label(for_='job_title', class_='block text-sm font-medium text-gray-300') }}
+                {{ form.job_title(id="job_title", class="mt-1 block w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-gray-300 focus:outline-none focus:ring focus:ring-green-500") }}
             </div>
 
             <!-- Email -->
@@ -39,8 +48,8 @@
 
             <!-- Confirm Email -->
             <div>
-                {{ form.confirm_email.label(for_='confirm-email', class_='block text-sm font-medium text-gray-300') }}
-                {{ form.confirm_email(id="confirm-email", class="mt-1 block w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-gray-300 focus:outline-none focus:ring focus:ring-green-500") }}
+                {{ form.confirm_email.label(for_='confirm_email', class_='block text-sm font-medium text-gray-300') }}
+                {{ form.confirm_email(id="confirm_email", class="mt-1 block w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-gray-300 focus:outline-none focus:ring focus:ring-green-500") }}
             </div>
 
             <!-- Password -->

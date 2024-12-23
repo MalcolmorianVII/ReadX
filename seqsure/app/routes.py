@@ -1,17 +1,17 @@
 import os
 from flask import (
     render_template, redirect, url_for, flash, request, 
-    jsonify, current_app, Blueprint, send_from_directory
+    jsonify, current_app, Blueprint, send_from_directory,flash
 )
 from werkzeug.utils import secure_filename
 from .pipeline_handler import run_nextflow_pipeline
 from .forms import LoginForm, RegisterForm
 
 # Create a Blueprint for routing
-routes = Blueprint('routes', __name__)
+#routes = Blueprint('routes', __name__)
 
 # Routes
-@current_app.route('/', methods=['GET', 'POST'])
+@current_app.route('/', methods=['GET'])
 def home():
     """Serve the home page."""
     return render_template('home.html')
@@ -25,18 +25,19 @@ def index():
 def register():
     """Serve the registration page."""
     form = RegisterForm()
-    user = None  # Placeholder for user data
+    #user = None  # Placeholder for user data
     if form.validate_on_submit():
-        # Example logic for handling registration form data
+        # Register user in the database
         form_data = {
-            "title": form.title.data,
+            "title": form.job_title.data,
             "email": form.email.data,
             "password": form.password.data
         }
         # Reset form fields for demonstration purposes
         form_data = {key: '' for key in form_data}
+        flash('Registration successful!', 'success') 
         return redirect(url_for('home'))
-    return render_template('forms.html', form=form, user=user)
+    return render_template('register.html', form=form)
 
 @current_app.route('/login', methods=['GET', 'POST'])
 def login():

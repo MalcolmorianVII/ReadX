@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block navigation %}
+<div class="flex items-center justify-between w-full">
+    <!-- Logo or Icon -->
+    <div class="text-blue-500 flex items-center space-x-2">
+        <i class="fas fa-th-large"></i>
+        <span class="font-bold">ReadX</span>
+    </div>
+    <!-- Authentication Links -->
+    <div class="flex items-center space-x-4">
+        <a href="{{ url_for('login') }}" class="text-gray-500 font-medium hover:text-blue-500">
+            Sign In
+        </a>
+        <a href="{{ url_for('register') }}" class="text-blue-500 font-semibold hover:underline">
+            Sign Up
+        </a>
+    </div>
+</div>
+{% endblock %}
+
+{% block welcome %}
+<div class="relative">
+    <!-- Background Image -->
+    <img 
+        src="https://researchresearch-news-wordpress-media-live.s3.eu-west-1.amazonaws.com/2024/06/data_security_hacking_hacked-738x443.jpg" 
+        alt="A researcher handling genomic data with lab equipment in the background" 
+        class="w-full h-screen object-cover"
+    />
+    <!-- Overlay Content -->
+    <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-end items-center text-center px-4 pb-8">
+        <h1 class="text-white text-3xl md:text-5xl font-bold mb-4">Accessible Genomics Analysis</h1>
+        <p class="text-white text-lg md:text-xl max-w-2xl mb-8">
+            ReadX is a tool for researchers that unlocks the power of genomic data. 
+            By providing a user-friendly interface and advanced analysis capabilities.
+        </p>
+        <div class="flex justify-center space-x-4 mb-4">
+            <!-- Pagination Dots -->
+            <span class="h-2 w-2 bg-white rounded-full"></span>
+            <span class="h-2 w-2 bg-gray-400 rounded-full"></span>
+            <span class="h-2 w-2 bg-gray-400 rounded-full"></span>
+        </div>
+    </div>
+</div>
+{% endblock %}

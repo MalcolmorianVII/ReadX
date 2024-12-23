@@ -8,7 +8,7 @@ from .pipeline_handler import run_nextflow_pipeline
 from .forms import LoginForm, RegisterForm
 
 # Create a Blueprint for routing
-routes = Blueprint('routes', __name__)
+#routes = Blueprint('routes', __name__)
 
 # Routes
 @current_app.route('/', methods=['GET'])
@@ -25,19 +25,19 @@ def index():
 def register():
     """Serve the registration page."""
     form = RegisterForm()
-    user = None  # Placeholder for user data
+    #user = None  # Placeholder for user data
     if form.validate_on_submit():
         # Register user in the database
         form_data = {
-            "title": form.title.data,
+            "title": form.job_title.data,
             "email": form.email.data,
             "password": form.password.data
         }
         # Reset form fields for demonstration purposes
         form_data = {key: '' for key in form_data}
-        flash('Registration successful!', 'success')
+        flash('Registration successful!', 'success') 
         return redirect(url_for('home'))
-    return render_template('register.html', form=form, user=user)
+    return render_template('register.html', form=form)
 
 @current_app.route('/login', methods=['GET', 'POST'])
 def login():

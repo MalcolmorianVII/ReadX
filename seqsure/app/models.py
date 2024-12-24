@@ -43,9 +43,22 @@ class PipelineResult(db.Model):
 class QCMetrics(db.Model):
     __tablename__ = 'qc_metrics'
     id = db.Column(db.Integer, primary_key=True)
-    metric_name = db.Column(db.String(255), nullable=False)
-    metric_description = db.Column(db.Text, nullable=True)
-    threshold = db.Column(db.String(255), nullable=True)
+    sample_id = db.Column(db.Integer, db.ForeignKey('samples.id'), nullable=False)
+    avg_q_score = db.Column(db.Float, nullable=True)  # Phred Quality Score
+    avg_depth = db.Column(db.Float, nullable=True)  # Average sequencing depth
+    percentage_10X = db.Column(db.Float, nullable=True)  # Percentage of regions covered at 10X
+    percentage_30X = db.Column(db.Float, nullable=True)  # Percentage of regions covered at 30X
+    total_reads = db.Column(db.Integer, nullable=True)  # Total number of reads
+    reads_mapped = db.Column(db.Integer, nullable=True)  # Total number of mapped reads
+    percentage_reads_mapped = db.Column(db.Float, nullable=True)  # Percentage of reads mapped
+    total_assembly_length = db.Column(db.Integer, nullable=True)  # Total length of the assembly
+    total_contigs = db.Column(db.Integer, nullable=True)  # Number of contigs
+    n50 = db.Column(db.Integer, nullable=True)  # N50 of the assembly
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    # Relationship
+    sample = db.relationship('Sample', backref=db.backref('qc_metrics', lazy=True))
+
 
 class Log(db.Model):
     __tablename__ = 'logs'

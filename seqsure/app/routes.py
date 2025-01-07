@@ -9,6 +9,17 @@ from flask import (
 from werkzeug.utils import secure_filename
 from .pipeline_handler import run_nextflow_pipeline
 from .forms import LoginForm, RegisterForm
+import bcrypt
+
+# Hash a password
+def hash_password(plain_password: str) -> str:
+    # Generate a salt and hash the password
+    hashed_password = bcrypt.hashpw(plain_password.encode('utf-8'), bcrypt.gensalt())
+    return hashed_password.decode('utf-8')
+
+# Verify a password
+def verify_password(plain_password: str, hashed_password: str) -> bool:
+    return bcrypt.checkpw(plain_password.encode('utf-8'), hashed_password.encode('utf-8'))
 
 # Create a Blueprint for routing
 #routes = Blueprint('routes', __name__)
@@ -36,14 +47,19 @@ def register():
     if form.validate_on_submit():
         # Register user in the database
         form_data = {
-            "title": form.job_title.data,
-            "email": form.email.data,
-            "password": form.password.data
+            "username": form.username.data,
+            "job_title": form.job_title.data,
+            "email": form.email.data
         }
-        # Reset form fields for demonstration purposes
-        user = form_data['email'].split('@')[0]
-        form_data = {key: '' for key in form_data}
-        flash(f'You have registered successfully on ReadX,{user}!', 'success') 
+        
+        form_data["password_hash"] = hash_password(form.password.data)
+        # Commit changes to the database
+        user = User(**form_data)
+        db.session.add(user)
+        db.session.commit()
+        
+        form_data = {key: '' for key in form_data} # Reset form fields for demonstration purposes
+        flash(f'You have registered successfully on ReadX,{user.username}!', 'success') 
         return redirect(url_for('home'))
     return render_template('register.html', form=form)
 

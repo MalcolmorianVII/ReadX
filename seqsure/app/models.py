@@ -1,16 +1,18 @@
-from flask_sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy 
 from datetime import datetime
+from app import db
 
-db = SQLAlchemy()
+# db = SQLAlchemy(app)
 
 class User(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(255), unique=True, nullable=False)
+    job_title = db.Column(db.String(255), nullable=False)
     email = db.Column(db.String(255), unique=True, nullable=False)
     password_hash = db.Column(db.String(255), nullable=False)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    sequencing_runs = db.relationship('SequencingRun', backref='user', lazy=True)
+    # created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    #sequencing_runs = db.relationship('SequencingRun', backref='user', lazy=True)
 
 class SequencingRun(db.Model):
     __tablename__ = 'sequencing_runs'

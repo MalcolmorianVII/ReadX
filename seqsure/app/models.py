@@ -55,27 +55,27 @@ class QCMetrics(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     sequencing_run_id = db.Column(db.Integer, db.ForeignKey('sequencing_runs.id'), nullable=False)
     sample_id = db.Column(db.Integer, db.ForeignKey('samples.id'), nullable=False)
-    avg_q_score = db.Column(db.Float, CheckConstraint('avg_q_score >= 0'), nullable=True)  # Must be non-negative
-    avg_depth = db.Column(db.Float, CheckConstraint('avg_depth >= 0'), nullable=True)
+    avg_q_score = db.Column(db.Float, db.CheckConstraint('avg_q_score >= 0'), nullable=True)  # Must be non-negative
+    avg_depth = db.Column(db.Float, db.CheckConstraint('avg_depth >= 0'), nullable=True)
     percentage_10X = db.Column(
         db.Float, 
-        CheckConstraint('percentage_10X >= 0 AND percentage_10X <= 100'),
+        db.CheckConstraint('percentage_10X >= 0 AND percentage_10X <= 100'),
         nullable=True
     )
     percentage_30X = db.Column(
         db.Float, 
-        CheckConstraint('percentage_30X >= 0 AND percentage_30X <= 100'),
+        db.CheckConstraint('percentage_30X >= 0 AND percentage_30X <= 100'),
         nullable=True
     )
-    total_reads = db.Column(db.Integer, CheckConstraint('total_reads >= 0'), nullable=True)
-    reads_mapped = db.Column(db.Integer, CheckConstraint('reads_mapped >= 0'), nullable=True)
+    total_reads = db.Column(db.Integer, db.CheckConstraint('total_reads >= 0'), nullable=True)
+    reads_mapped = db.Column(db.Integer, db.CheckConstraint('reads_mapped >= 0'), nullable=True)
     percentage_reads_mapped = db.Column(
         db.Float, 
-        CheckConstraint('percentage_reads_mapped >= 0 AND percentage_reads_mapped <= 100'),
+        db.CheckConstraint('percentage_reads_mapped >= 0 AND percentage_reads_mapped <= 100'),
         nullable=True
     )
-    total_assembly_length = db.Column(db.Integer, CheckConstraint('total_assembly_length >= 0'), nullable=True)
-    total_contigs = db.Column(db.Integer, CheckConstraint('total_contigs >= 0'), nullable=True)
-    n50 = db.Column(db.Integer, CheckConstraint('n50 >= 0'), nullable=True)
+    total_assembly_length = db.Column(db.Integer, db.CheckConstraint('total_assembly_length >= 0'), nullable=True)
+    total_contigs = db.Column(db.Integer, db.CheckConstraint('total_contigs >= 0'), nullable=True)
+    n50 = db.Column(db.Integer, db.CheckConstraint('n50 >= 0'), nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)

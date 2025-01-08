@@ -30,8 +30,8 @@ def home():
     """Serve the home page."""
     # Test querying the db & rendering info
     users = User.query.first()
-    password = users.password_hash
-    user = users.username
+    password = 'XXX123'
+    user = 'yoak'
     return render_template('home.html',user=user,password=password)
 
 @app.route('/index', methods=['GET', 'POST'])
@@ -47,11 +47,17 @@ def register():
     if form.validate_on_submit():
         # Register user in the database
         form_data = {
-            "username": form.username.data,
+            #"username": form.username.data, add this in RegisterForm
             "job_title": form.job_title.data,
             "email": form.email.data
         }
-        
+        form_data["username"] = form_data["email"].split('@')[0]
+        # Check if user already exists in the database
+        existing_user = User.query.filter_by(email=form.email.data).first()
+        if existing_user:
+            flash('Email already exists', 'error')
+            return redirect(url_for('register'))
+        # Hash the password
         form_data["password_hash"] = hash_password(form.password.data)
         # Commit changes to the database
         user = User(**form_data)
@@ -73,6 +79,11 @@ def login():
             "email": form.email.data,
             "password": form.password.data
         }
+        # validate the login credentials
+        user = User.query.filter_by(email=login_data["email"]).first()
+        if not user or not verify_password(login_data["password"], user.password_hash):
+            flash('Invalid login credentials', 'error')
+            return redirect(url_for('login'))
         # Reset login fields for demonstration purposes
         login_data = {key: '' for key in login_data}
         return redirect(url_for('home'))

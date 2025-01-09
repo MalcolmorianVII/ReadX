@@ -1,22 +1,26 @@
 {% extends "register.html" %}
 
 {% block body %}
-<div class="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md">
-  <h2 class="text-2xl font-bold text-center mb-6">Login to ReadX</h2>
+<div class="bg-white shadow-md rounded-lg px-8 py-6">
+  <h2 class="text-2xl font-bold text-gray-700 text-center mb-6">Login to ReadX</h2>
   <form method="POST" class="space-y-4">
     {% block form %}
     {{ form.hidden_tag() }} <!-- Implements CSRF protection -->
 
     <!-- Email Field -->
     <div>
-      {{ form.email.label(for_='email', class_='block text-sm font-medium text-gray-300') }}
-      {{ form.email(id="email", class="mt-1 block w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-gray-300 focus:outline-none focus:ring focus:ring-green-500") }}
+      <label for="email" class="block text-sm font-medium text-gray-600">
+        {{ form.email.label.text }}
+    </label>
+    {{ form.email(id="email", class="block w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-700") }}
     </div>
 
     <!-- Password Field -->
     <div>
-      {{ form.password.label(for_='password', class_='block text-sm font-medium text-gray-300') }}
-      {{ form.password(id="password", class="mt-1 block w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-gray-300 focus:outline-none focus:ring focus:ring-green-500") }}
+      <label for="password" class="block text-sm font-medium text-gray-600">
+        {{ form.password.label.text }}
+      </label>
+      {{ form.password(id="password", class="block w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-700") }}
     </div>
 
     <!-- Submit Button -->

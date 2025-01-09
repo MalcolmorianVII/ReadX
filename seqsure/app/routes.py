@@ -55,7 +55,7 @@ def register():
         # Check if user already exists in the database
         existing_user = User.query.filter_by(email=form.email.data).first()
         if existing_user:
-            flash('Email already exists', 'error')
+            flash('User with email already exists', 'error')
             return redirect(url_for('register'))
         # Hash the password
         form_data["password_hash"] = hash_password(form.password.data)
@@ -66,7 +66,7 @@ def register():
         
         form_data = {key: '' for key in form_data} # Reset form fields for demonstration purposes
         flash(f'You have registered successfully on ReadX,{user.username}!', 'success') 
-        return redirect(url_for('home'))
+        return redirect(url_for('login'))
     return render_template('register.html', form=form)
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -86,13 +86,13 @@ def login():
             return redirect(url_for('login'))
         # Reset login fields for demonstration purposes
         login_data = {key: '' for key in login_data}
-        return redirect(url_for('home'))
+        return redirect(url_for('readx'))
     return render_template('login.html', form=form)
 
-@app.route('/seqsure', methods=['GET', 'POST'])
-def seqsure():
+@app.route('/readx', methods=['GET', 'POST'])
+def readx():
     """Serve the Seqsure page."""
-    return render_template('seqsure.html', title="Run Seqsure")
+    return render_template('readx.html', title="Readx")
 
 @app.route('/data', methods=['GET', 'POST'])
 def data():

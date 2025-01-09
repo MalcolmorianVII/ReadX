@@ -2,75 +2,78 @@
 <html lang="en">
 <head>
     {% block head %}
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-    </style>
     {% endblock %}
 </head>
-
-<body class="bg-black text-white flex items-center justify-center min-h-screen">
-    {% block body %}
-    <div class="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h2 class="text-2xl font-bold text-center mb-6">Register on ReadX</h2>
-        
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="w-full max-w-md mx-auto">
         <!-- Flash Messages -->
-        {% for message, category in get_flashed_messages(with_categories=True) %}
-        <div class="p-4 mb-4 text-sm 
-            {{ 'text-green-700 bg-green-100' if category == 'success' else 'text-red-700 bg-red-100' }} 
-            rounded-lg">
-            {{ message }}
+        {% block warning %}
+        <div class="mb-6">
+            {% for message in get_flashed_messages() %}
+            <div class="flex items-center justify-between bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 px-4 py-3 rounded-md mb-4">
+                <span>{{ message }}</span>
+                <button type="button" class="text-yellow-700 hover:text-yellow-900 font-bold" onclick="this.parentElement.style.display='none';">
+                    &times;
+                </button>
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
+        {% endblock %}
 
-        <!-- Login Form -->
-        <form method="POST" class="space-y-4">
-            {% block form %}
-            {{ form.hidden_tag() }} <!-- CSRF protection -->
+        <!-- Form Section -->
+        {% block body %}
+        <div class="bg-white shadow-md rounded-lg px-8 py-6">
+            <h2 class="text-2xl font-bold text-gray-700 text-center mb-6">Register on ReadX</h2>
+            <form method="POST" class="space-y-4">
+                {% block form %}
+                {{ form.hidden_tag() }} <!-- CSRF protection -->
 
-            <!-- Job Title -->
-            <div>
-                {{ form.job_title.label(for_='job_title', class_='block text-sm font-medium text-gray-300') }}
-                {{ form.job_title(id="job_title", class="mt-1 block w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-gray-300 focus:outline-none focus:ring focus:ring-green-500") }}
-            </div>
+                <div class="space-y-2">
+                    <!-- Job Title -->
+                    <label for="job_title" class="block text-sm font-medium text-gray-600">
+                        {{ form.job_title.label.text }}
+                    </label>
+                    {{ form.job_title(id="job_title", class="block w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-700") }}
 
-            <!-- Email -->
-            <div>
-                {{ form.email.label(for_='email', class_='block text-sm font-medium text-gray-300') }}
-                {{ form.email(id="email", class="mt-1 block w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-gray-300 focus:outline-none focus:ring focus:ring-green-500") }}
-            </div>
+                    <!-- Email -->
+                    <label for="email" class="block text-sm font-medium text-gray-600">
+                        {{ form.email.label.text }}
+                    </label>
+                    {{ form.email(id="email", class="block w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-700") }}
 
-            <!-- Confirm Email -->
-            <div>
-                {{ form.confirm_email.label(for_='confirm_email', class_='block text-sm font-medium text-gray-300') }}
-                {{ form.confirm_email(id="confirm_email", class="mt-1 block w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-gray-300 focus:outline-none focus:ring focus:ring-green-500") }}
-            </div>
+                    <!-- Confirm Email -->
+                    <label for="confirm_email" class="block text-sm font-medium text-gray-600">
+                        {{ form.confirm_email.label.text }}
+                    </label>
+                    {{ form.confirm_email(id="confirm_email", class="block w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-700") }}
 
-            <!-- Password -->
-            <div>
-                {{ form.password.label(for_='password', class_='block text-sm font-medium text-gray-300') }}
-                {{ form.password(id="password", class="mt-1 block w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-gray-300 focus:outline-none focus:ring focus:ring-green-500") }}
-            </div>
+                    <!-- Password -->
+                    <label for="password" class="block text-sm font-medium text-gray-600">
+                        {{ form.password.label.text }}
+                    </label>
+                    {{ form.password(id="password", class="block w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-700") }}
+                </div>
 
-            <!-- Remember Me -->
-            <div class="flex items-center">
-                {{ form.remember_me(id="remember_me", class="h-4 w-4 text-green-500 focus:ring-green-400 border-gray-600 rounded") }}
-                {{ form.remember_me.label(for_='remember_me', class_='ml-2 text-sm text-gray-300') }}
-            </div>
+                <!-- Remember Me -->
+                <div class="flex items-center">
+                    {{ form.remember_me(id="remember_me", class="h-4 w-4 text-blue-500 focus:ring-blue-400 border-gray-300 rounded") }}
+                    <label for="remember_me" class="ml-2 text-sm text-gray-600">
+                        {{ form.remember_me.label.text }}
+                    </label>
+                </div>
 
-            <!-- Submit Button -->
-            <div>
-                {{ form.submit(class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500") }}
-            </div>
-            {% endblock %}
-        </form>
+                <!-- Submit Button -->
+                <button type="submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                    {{ form.submit.label.text }}
+                </button>
+                {% endblock %}
+            </form>
+        </div>
+        {% endblock %}
     </div>
-    {% endblock %}
 </body>
 </html>

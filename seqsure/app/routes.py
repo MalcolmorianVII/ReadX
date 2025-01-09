@@ -66,7 +66,7 @@ def register():
         
         form_data = {key: '' for key in form_data} # Reset form fields for demonstration purposes
         flash(f'You have registered successfully on ReadX,{user.username}!', 'success') 
-        return redirect(url_for('home'))
+        return redirect(url_for('login'))
     return render_template('register.html', form=form)
 
 @app.route('/login', methods=['GET', 'POST'])

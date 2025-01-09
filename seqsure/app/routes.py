@@ -86,7 +86,7 @@ def login():
             return redirect(url_for('login'))
         # Reset login fields for demonstration purposes
         login_data = {key: '' for key in login_data}
-        return redirect(url_for('home'))
+        return redirect(url_for('readx'))
     return render_template('login.html', form=form)
 
 @app.route('/seqsure', methods=['GET', 'POST'])

@@ -55,7 +55,7 @@ def register():
         # Check if user already exists in the database
         existing_user = User.query.filter_by(email=form.email.data).first()
         if existing_user:
-            flash('Email already exists', 'error')
+            flash('User with email already exists', 'error')
             return redirect(url_for('register'))
         # Hash the password
         form_data["password_hash"] = hash_password(form.password.data)

@@ -89,10 +89,10 @@ def login():
         return redirect(url_for('readx'))
     return render_template('login.html', form=form)
 
-@app.route('/seqsure', methods=['GET', 'POST'])
-def seqsure():
+@app.route('/readx', methods=['GET', 'POST'])
+def readx():
     """Serve the Seqsure page."""
-    return render_template('seqsure.html', title="Run Seqsure")
+    return render_template('readx.html', title="Readx")
 
 @app.route('/data', methods=['GET', 'POST'])
 def data():

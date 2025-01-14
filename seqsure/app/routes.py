@@ -30,12 +30,10 @@ def home():
     """Serve the home page."""
     # Test querying the db & rendering info
     users = User.query.first()
-    password = 'XXX123'
-    user = 'yoak'
-    return render_template('home.html',user=user,password=password)
+    return render_template('home.html')
 
 @app.route('/index', methods=['GET', 'POST'])
-def index():
+def index(user):
     """Serve the index page."""
     return render_template('index.html')
 
@@ -86,13 +84,13 @@ def login():
             return redirect(url_for('login'))
         # Reset login fields for demonstration purposes
         login_data = {key: '' for key in login_data}
-        return redirect(url_for('readx'))
+        return redirect(url_for('readx',user=user))
     return render_template('login.html', form=form)
 
-@app.route('/readx', methods=['GET', 'POST'])
-def readx():
-    """Serve the Seqsure page."""
-    return render_template('readx.html', title="Readx")
+@app.route('/readx/<user>', methods=['GET', 'POST'])
+def readx(user):
+    """Serve the default ReadX page."""
+    return render_template('readx.html',user=user, title="Readx")
 
 @app.route('/data', methods=['GET', 'POST'])
 def data():

@@ -32,10 +32,6 @@ def home():
     users = User.query.first()
     return render_template('home.html')
 
-@app.route('/index', methods=['GET', 'POST'])
-def index(user):
-    """Serve the index page."""
-    return render_template('index.html')
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():

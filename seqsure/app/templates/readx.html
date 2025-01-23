@@ -1,15 +1,17 @@
 {% extends "base.html" %}
 
 {% block body %}
- {{ super() }}
- <!-- Welcome Section -->
- <div class="mt-6">
+{{ super() }}
+<!-- Welcome Section -->
+<div class="bg-blue-100 py-6 rounded-lg shadow-md mt-6 text-center">
     {% block welcome %}
-    <h1 class="text-2xl font-bold">Dashboard</h1>
-    <p class="text-gray-500">Hi {{ user }}, Welcome Back!</p>
+    <h1 class="text-3xl font-bold text-blue-600">Dashboard</h1>
+    <p class="text-gray-600 mt-2">Hi {{ user }}, Welcome Back!</p>
     {% endblock %}
 </div>
- <div class="container mx-auto p-8 max-w-md bg-gray-100 rounded-lg shadow-md">
+
+<!-- ReadX File Upload Section -->
+<div class="container mx-auto p-8 mt-8 max-w-md bg-white rounded-lg shadow-md">
     <h1 class="text-2xl font-bold text-gray-800 mb-6 text-center">ReadX - File Upload</h1>
     <form id="uploadForm" class="space-y-4">
         <div>
@@ -41,5 +43,3 @@
 
 <script src="static/seqsure.js"></script>
 {% endblock %}
-
-

@@ -28,8 +28,6 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
 @app.route('/')
 def home():
     """Serve the home page."""
-    # Test querying the db & rendering info
-    users = User.query.first()
     return render_template('home.html')
 
 
@@ -80,12 +78,14 @@ def login():
             return redirect(url_for('login'))
         # Reset login fields for demonstration purposes
         login_data = {key: '' for key in login_data}
-        return redirect(url_for('readx',user=user))
+        username = user.email.split('@')[0]
+        return redirect(url_for('readx',user=username))
     return render_template('login.html', form=form)
 
-@app.route('/readx/<user>', methods=['GET', 'POST'])
-def readx(user):
+@app.route('/readx', methods=['GET', 'POST'])
+def readx():
     """Serve the default ReadX page."""
+    user = request.args.get("user")
     return render_template('readx.html',user=user, title="Readx")
 
 @app.route('/data', methods=['GET', 'POST'])

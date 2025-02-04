@@ -1,7 +1,7 @@
-# Nextflow QC Pipeline for Sequencing Runs  
+# ReadX: Web based QC Pipeline for Sequencing Runs  
 
 ## Overview  
-This Nextflow pipeline assesses the success of sequencing runs performed by our core sequencing team. It evaluates the quality and integrity of sequencing data, ensuring they meet the criteria for downstream analyses. The pipeline focuses on two key aspects:
+This flask based Nextflow pipeline assesses the success of sequencing runs performed by our core sequencing team. It evaluates the quality and integrity of sequencing data, ensuring they meet the criteria for downstream analyses. The pipeline focuses on two key aspects:
 1. Ensuring sufficient quality data for downstream analysis.
 2. Verifying successful sequencing of the target organism.  
 
